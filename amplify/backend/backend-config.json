@@ -43,5 +43,12 @@
         }
       }
     }
+  },
+  "function": {
+    "aws4990project29edbc46e": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
   }
 }
