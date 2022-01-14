@@ -1,25 +1,34 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("./fonts/Montserrat/static/Montserrat-Regular.ttf")
+}
+
 .noteDiv {
     margin-bottom: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
     background: #f2f2f2;
-    width:600px;
-    margin: 0 auto;
+    width:500px;
     display: inline-block;
     vertical-align: middle;
     border-radius: 10px;
     border-style: solid;
     border-width: 1px;
     border-color: #c4c4c4;
+    padding: 15px;
 }
 
-.deleteNote {
+
+.redButton {
     background-color: #d15c5c;
     color: white;
     border: none;
     padding: 10px;
     transition: 0.2s;
+    font-family: "Montserrat";
 }
 
-.deleteNote:hover {
+.redButton:hover {
     background-color: red;
 }
 
@@ -43,6 +52,7 @@
     transition: 0.2s;
     margin: 5px;
     vertical-align: middle;
+    font-family: "Montserrat";
 }
 
 .greenButton:hover {
@@ -59,4 +69,15 @@
     border-color: #c4c4c4;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.bigLogo {
+    width:50px;
+    height: 50px;
+}
+
+body {
+    background-image: url("assets/background-note.png");
+    background-blend-mode: lighten;
+    font-family: "Montserrat";
 }

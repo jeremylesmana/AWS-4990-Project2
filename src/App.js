@@ -66,9 +66,16 @@ function App() {
     fetchNotes();
   }
 
+  async function clearTranslate() {
+    setResponse("Ready to translate...");
+  }
+  window.onbeforeunload = function() {
+    localStorage.clear();
+  }
+
   return (
     <div className="App">
-      <h1>My Notes App</h1>
+      <br/><img className={styles.bigLogo} src={require('./assets/notepad.png')} /><h1>My Notes App</h1>
       <h2>Create a new note</h2>
       <div className={styles.createNote}>
         <br />
@@ -82,8 +89,9 @@ function App() {
           onChange={e => {setFormData({ ...formData, 'description': e.target.value}); updateText(e.target.value)}}
           placeholder="Note description"
           value={formData.description}
-          rows={5}
-          cols={40}
+          rows={10}
+          cols={60}
+          id='noteTextarea'
         /><br /><br />Add an image (optional)<br/>
         <input
           type="file"
@@ -95,7 +103,8 @@ function App() {
       </div>
       <div className={styles.translateBox}>
         <h3>Spanish translated to English</h3>
-        <p>{response}</p>
+        <p id='finishTranslation'>{response}</p>
+        <button onClick={clearTranslate} className={styles.redButton}>Clear</button><br /><br/>
       </div>     
       <div>
         <h2>Displaying your current notes</h2>
@@ -108,7 +117,7 @@ function App() {
                 note.image && <img src={note.image} style={{width: 400}} />
             }
               <br />
-              <button onClick={() => deleteNote(note)} className={styles.deleteNote}>Delete note</button>
+              <button onClick={() => deleteNote(note)} className={styles.redButton}>Delete note</button>
               <br /><br />
             </div>
           ))
