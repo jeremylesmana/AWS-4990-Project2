@@ -16,7 +16,10 @@
         "aws4990project2489a22c5": {}
       },
       "function": {
-        "aws4990project29edbc46e": {}
+        "aws4990project29edbc46e": {
+          "deploymentBucketName": "amplify-amplifyefaab69d940c4-staging-114509-deployment",
+          "s3Key": "amplify-builds/aws4990project29edbc46e-6d4d5139465a77726b69-build.zip"
+        }
       }
     }
   }
