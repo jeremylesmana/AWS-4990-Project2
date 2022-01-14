@@ -1,0 +1,62 @@
+.noteDiv {
+    margin-bottom: 30px;
+    background: #f2f2f2;
+    width:600px;
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c4c4c4;
+}
+
+.deleteNote {
+    background-color: #d15c5c;
+    color: white;
+    border: none;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+.deleteNote:hover {
+    background-color: red;
+}
+
+.createNote {
+    background-color: #fdfdfd;
+    width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c4c4c4;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.greenButton {
+    background-color: #60bf6e;
+    color: white;
+    border: none;
+    padding: 10px;
+    transition: 0.2s;
+    margin: 5px;
+    vertical-align: middle;
+}
+
+.greenButton:hover {
+    background-color: #3db34e;
+}
+
+.translateBox{
+    background-color: #fdfdfd;
+    width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c4c4c4;
+    padding-left: 20px;
+    padding-right: 20px;
+}

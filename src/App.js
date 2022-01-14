@@ -1,20 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import { API, Storage } from 'aws-amplify';
+import Amplify, { API, Storage, Predictions } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { listNotes } from './graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
+import styles from './customStyle.module.css'
+//import awsconfig from './aws-exports';
+//Amplify.configure(awsconfig);
 
 
 const initialFormState = { name: '', description: '' }
 
 function App() {
+  const [response, setResponse] = useState("Ready to translate...");
+  const [text, updateText] = useState("Write to translate...");
   const [notes, setNotes] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
 
   useEffect(() => {
     fetchNotes();
   }, []);
+
+  async function translate() {
+    const data = await Predictions.convert({
+      translateText: {source: {text}}
+    })
+    setResponse(data.text)
+  }
 
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listNotes });
@@ -45,7 +57,7 @@ function App() {
     setNotes(newNotesArray);
     await API.graphql({ query: deleteNoteMutation, variables: { input: { id } }});
   }
-
+    
   async function onChange(e) {
     if (!e.target.files[0]) return
     const file = e.target.files[0];
@@ -57,35 +69,52 @@ function App() {
   return (
     <div className="App">
       <h1>My Notes App</h1>
-      <input
-        onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-        placeholder="Note name"
-        value={formData.name}
-      /><br/>
-      <input
-        onChange={e => setFormData({ ...formData, 'description': e.target.value})}
-        placeholder="Note description"
-        value={formData.description}
-      /><br/>
-      <input
-        type="file"
-        onChange={onChange}
-      /><br/>
-      <button onClick={createNote}>Create Note</button>
-      <div style={{marginBottom: 30}}>
-      {
-        notes.map(note => (
-          <div key={note.id || note.name}>
-            <h2>{note.name}</h2>
-            <p>{note.description}</p>
-            <button onClick={() => deleteNote(note)}>Delete note</button>
-            {
-              note.image && <img src={note.image} style={{width: 400}} />
-            }
-          </div>
-        ))
-      }
+      <h2>Create a new note</h2>
+      <div className={styles.createNote}>
+        <br />
+        <input
+          onChange={e => setFormData({ ...formData, 'name': e.target.value})}
+          placeholder="Note Title"
+          value={formData.name}
+          style={{fontSize: '20px'}}
+        /><br /><br/>
+        <textarea
+          onChange={e => {setFormData({ ...formData, 'description': e.target.value}); updateText(e.target.value)}}
+          placeholder="Note description"
+          value={formData.description}
+          rows={5}
+          cols={40}
+        /><br /><br />Add an image (optional)<br/>
+        <input
+          type="file"
+          onChange={onChange}
+        /><br /><br/>
+        <button onClick={createNote} className={styles.greenButton}>Create Note</button>
+        <button onClick={translate} className={styles.greenButton}>Translate<br/>Spanish to English</button>
+        <br/><br/>
       </div>
+      <div className={styles.translateBox}>
+        <h3>Spanish translated to English</h3>
+        <p>{response}</p>
+      </div>     
+      <div>
+        <h2>Displaying your current notes</h2>
+        {
+            notes.map(note => (
+             <div key={note.id || note.name} className={styles.noteDiv}>
+              <h2>{note.name}</h2>
+              <p>{note.description}</p>
+              {
+                note.image && <img src={note.image} style={{width: 400}} />
+            }
+              <br />
+              <button onClick={() => deleteNote(note)} className={styles.deleteNote}>Delete note</button>
+              <br /><br />
+            </div>
+          ))
+        }
+      </div>
+      
     </div>
   );
 }

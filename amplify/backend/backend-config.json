@@ -57,5 +57,12 @@
       "providerPlugin": "awscloudformation",
       "dependsOn": []
     }
+  },
+  "predictions": {
+    "translateTextd44dbadb": {
+      "providerPlugin": "awscloudformation",
+      "service": "Translate",
+      "convertType": "translateText"
+    }
   }
 }

@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "aws4990project2489a22c5": {}
+        "aws4990project2489a22c5": {},
+        "true": {}
       },
       "function": {
         "aws4990project29edbc46e": {

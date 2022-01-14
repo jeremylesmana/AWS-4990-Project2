@@ -6,7 +6,10 @@ import reportWebVitals from './reportWebVitals';
 
 import Amplify from 'aws-amplify';
 import config from './aws-exports.js';
+import { AmazonAIPredictionsProvider } from '@aws-amplify/predictions'
+
 Amplify.configure(config);
+Amplify.addPluggable(new AmazonAIPredictionsProvider());
 
 ReactDOM.render(
   <React.StrictMode>

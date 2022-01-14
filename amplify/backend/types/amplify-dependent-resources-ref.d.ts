@@ -30,5 +30,12 @@ export type AmplifyDependentResourcesAttributes = {
             "BucketName": "string",
             "Region": "string"
         }
+    },
+    "predictions": {
+        "translateTextd44dbadb": {
+            "region": "string",
+            "sourceLang": "string",
+            "targetLang": "string"
+        }
     }
 }
